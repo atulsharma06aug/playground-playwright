@@ -1,8 +1,17 @@
-import {test} from '@playwright/test'
+import { test } from '../../fixtures/fixtures.ts'
 
-test("env test", async ({page})=>{
+test("TC-01, Login With Incorrect Details @loginPageTest", {
+    annotation: {
+        type: "Incorrect login Credentails",
+        description:"Validates login error handling when incorrect credentials are provided"
+    }
+}, async ({ page, LoginPageObject }) => {
     console.log(process.env.BASE_URL)
-    await page.goto(process.env.BASE_URL!, {
-        waitUntil:'networkidle'
-    })
+    await LoginPageObject.openLoginPage()
+    await LoginPageObject.enterInvalidLoginDetails(
+        {
+            username: process.env.USER_EMAIL,
+            userpassword: process.env.USER_PASSWORD
+        }
+    )
 })

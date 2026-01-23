@@ -1,4 +1,4 @@
-import {Locator, Page, test} from '@playwright/test'
+import {Locator, Page, test, expect} from '@playwright/test'
 
 export class LoginPageObject{
     readonly page: Page
@@ -15,9 +15,16 @@ export class LoginPageObject{
     }
 
     async openLoginPage(){
-        await this.page.goto("https://dev-tracking.efficientlogistics.co/login")
+        await this.page.goto(process.env.BASE_URL!)
         console.log(process.env.BASE_URL)
     }
 
+    async enterInvalidLoginDetails(user: any)  {
+        console.log("userOject"+ user)
+        await this.page.locator('input[type="email"]').fill(user.username)
+        await this.page.locator('input[type="password"]').fill(user.userpassword)
+        await this.page.getByRole('button', {}).click()
+        await expect(this.page.getByText("Please enter a valid email address.")).toBeVisible();
+    }
 
 }
