@@ -1,5 +1,9 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
+dotenv.config(
+  {
+    path: process.env.ENV_FILE || '.env.dev'
+  }
+);
 console.log(process.env.BASE_URL)
 
 import { defineConfig, devices } from '@playwright/test';
