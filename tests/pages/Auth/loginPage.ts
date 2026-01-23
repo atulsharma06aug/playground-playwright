@@ -12,7 +12,7 @@ export class LoginPageObject{
         this.userLoginButton = this.page.getByRole('button', {name: 'Sign In to Dashboard'})
         this.userNameInputBox = this.page.locator('input[type="email"]')
         this.userPasswordInputBox = this.page.locator('input[type="password"]')
-        this.forgotPasswordLink  = this.page.getByText('Forgot Password?')
+        this.forgotPasswordLink = this.page.getByRole('link', {name: 'Forgot Password?'})
     }
 
     async openLoginPage(){
@@ -30,9 +30,8 @@ export class LoginPageObject{
         await expect(this.page.getByText("Please enter a valid email address.")).toBeVisible();
     }
 
-    async isForgotPasswordVisible(){
-        await this.forgotPasswordLink.isVisible()
-        await expect(this.page.getByText("Forgot Password?")).toBeVisible()
+    async isForgotPasswordVisible(): Promise<boolean>{
+        return await this.forgotPasswordLink.isVisible()
     }
 
 }
