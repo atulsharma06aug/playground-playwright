@@ -6,7 +6,7 @@ test("TC-01, Login With Incorrect Details @loginPageTest", {
         description:"Validates login error handling when incorrect credentials are provided"
     }
 }, async ({ page, LoginPageObject }) => {
-    console.log(process.env.BASE_URL)
+    console.log(process.env.BASE_URL!)
     await LoginPageObject.openLoginPage()
     await LoginPageObject.enterInvalidLoginDetails(
         {
@@ -14,4 +14,5 @@ test("TC-01, Login With Incorrect Details @loginPageTest", {
             userpassword: process.env.USER_PASSWORD
         }
     )
+    await page.screenshot({path:'screenshoot.png'})
 })
