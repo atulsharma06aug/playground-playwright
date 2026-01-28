@@ -1,18 +1,17 @@
 import {Locator, Page, test, expect} from '@playwright/test'
 
 export class ForgotPasswordPage{
-     readonly page: Page
-     readonly userInputEmailID: Locator
-     readonly forgotPasswordButton: Locator
+     private readonly userInputEmailID: Locator
+     private readonly forgotPasswordButton: Locator
 
-    constructor(page:Page){
-        this.page = page
+    constructor(public readonly page: Page){
         this.userInputEmailID = this.page.locator('input[type="email"]')
         this.forgotPasswordButton = this.page.getByRole("button", {name: 'Send Reset Link'})
     }
 
     async gotoForgotUserPage(){
-        await this.page.goto(process.env.BASE_URL+""+process.env.FORGOT__USER__PASSWORD__URL,
+        
+        await this.page.goto(process.env.BASE_URL+""+process.env.FORGOT__USER__PASSWORD__PAGE__URL,
             {
                 waitUntil:'networkidle'
             }
@@ -30,6 +29,5 @@ export class ForgotPasswordPage{
     async clickSendResetLinkButton(){
         await this.forgotPasswordButton.click()
     }
-
 
 }
