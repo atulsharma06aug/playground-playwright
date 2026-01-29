@@ -2,12 +2,16 @@ import { test as basetest } from '@playwright/test'
 import { LoginPageObject } from '../pages/Auth/loginPage'
 import { ForgotPasswordPage } from '../pages/Auth/forgotPasswordPage'
 import { PageHeader} from '../pages/dashboards/PageHeader'
+import { SettingPage } from '../pages/dashboards/SettingsPage'
+import {ShipmentDeliveryStatsPage} from '../pages/dashboards/ShipmentDeliveryStatsPage'
 
 
 type ELAppFixtures = {
     LoginPageObject: LoginPageObject
     ForgotPasswordPage: ForgotPasswordPage
     PageHeader: PageHeader
+    SettingPage: SettingPage
+    ShipmentDeliveryStatsPage: ShipmentDeliveryStatsPage
 }
 
 export const test = basetest.extend<ELAppFixtures>({
@@ -22,6 +26,14 @@ export const test = basetest.extend<ELAppFixtures>({
 
     PageHeader: async ({page}, use)=>{
         await use(new PageHeader(page))
+    },
+
+    SettingPage: async ({page}, use)=>{
+        await use(new SettingPage(page))
+    },
+    
+    ShipmentDeliveryStatsPage: async ({page}, use)=>{
+        await use(new ShipmentDeliveryStatsPage(page))
     }
 
 })

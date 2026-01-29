@@ -22,7 +22,7 @@ export class PageHeader{
         await this.page.getByRole(
             'option', {
                 name: selected__time__zone
-            }
+        }
         ).click()
     // await this.page.pause()
     }
