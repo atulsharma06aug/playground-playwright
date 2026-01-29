@@ -1,4 +1,3 @@
-import { error } from 'node:console'
 import { expect, test } from '../../fixtures/fixtures'
 
 const $userProfile = {
