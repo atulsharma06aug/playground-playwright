@@ -1,4 +1,4 @@
-import { test } from '../../fixtures/fixtures'
+import { expect, test } from '../../fixtures/fixtures'
 
 test.describe("Setting Testing", () => {
     const user__profile = {
@@ -15,12 +15,36 @@ test.describe("Setting Testing", () => {
         )
     })
 
-    test("Setting Toggle On", async ({SettingPage, ShipmentDeliveryStatsPage }) => {
+    test("Setting Toggle On", async ({page, SettingPage, ShipmentDeliveryStatsPage }) => {
+        const UndeliveredandLostorders = "Undelivered and Lost orders"
+        const UndeliveredandLostorders2 = "Undelivered and Lost orders2"
+        const InvoiceGenerated = "invoice 2"
         await ShipmentDeliveryStatsPage.openSettingPageLink()
-        await SettingPage.enableDisableUndeliveredAndLostOrdersEmailNotification()
-        await SettingPage.page.pause()
-        await SettingPage.enableDisableUndeliveredAndLostOrdersSlackNotification()
-        await SettingPage.page.pause()
+        if(await SettingPage.isChecboxIsChecked(UndeliveredandLostorders, 'Email')){
+            await SettingPage.getToggleONOFF(UndeliveredandLostorders, 'Email')
+            console.log("I am here in if condition")
+            await expect(SettingPage.expectResult(UndeliveredandLostorders, 'Email')).not.toBeChecked()
+        } else {
+            console.log("I am here in else condition")
+            await SettingPage.getToggleONOFF(UndeliveredandLostorders, 'Email')
+            await expect(SettingPage.expectResult(UndeliveredandLostorders, 'Email')).toBeChecked()
+        }
+        await SettingPage.getToggleONOFF(UndeliveredandLostorders, 'Email')
+        // await expect(SettingPage.expectResult(UndeliveredandLostorders, 'Email')).not.toBeChecked()
+
+        await SettingPage.getToggleONOFF(UndeliveredandLostorders2, 'Email')
+        // await expect(SettingPage.expectResult(UndeliveredandLostorders2, 'Email')).not.toBeChecked()
+        await SettingPage.getToggleONOFF(UndeliveredandLostorders2, 'Slack')
+        // await expect(SettingPage.expectResult(UndeliveredandLostorders2,'Slack')).not.toBeChecked()
+
+        await SettingPage.getToggleONOFF(InvoiceGenerated, 'Email')
+        // await expect(SettingPage.expectResult(InvoiceGenerated, 'Email')).not.toBeChecked()
+        await SettingPage.getToggleONOFF(InvoiceGenerated, 'Slack')
+        // await expect(SettingPage.expectResult(InvoiceGenerated, 'Slack')).not.toBeChecked()
+        // await page.pause()
+        await SettingPage.clickSaveChangesButton()
+        await expect(page.locator('.MuiAlert-root').first()).toContainText('Notification settings updated successfully!')
+        
     })
 })
 

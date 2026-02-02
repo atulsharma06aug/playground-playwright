@@ -5,12 +5,14 @@ export class LoginPageObject{
     private readonly userPasswordInputBox: Locator
     private readonly userLoginButton: Locator
     private readonly forgotPasswordLink: Locator
+    private readonly appLogo: Locator
 
     constructor(public readonly page: Page){
         this.userLoginButton = this.page.getByRole('button', {name: 'Sign In to Dashboard'})
         this.userNameInputBox = this.page.locator('input[type="email"]')
         this.userPasswordInputBox = this.page.locator('input[type="password"]')
         this.forgotPasswordLink = this.page.getByRole('link', {name: 'Forgot Password?'})
+        this.appLogo = this.page.getByAltText('logo')
     }
 
     async openLoginPage(){
