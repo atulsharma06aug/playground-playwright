@@ -51,8 +51,4 @@ test.describe("@forgotPassword", {
             await ForgotPasswordPage.clickSendResetLinkButton()
         })
 
-        test.afterAll("Close Project", async ({ page }) => {
-
-        })
-
     }) // end of test group 

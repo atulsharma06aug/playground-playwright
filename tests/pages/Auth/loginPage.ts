@@ -12,12 +12,12 @@ export class LoginPageObject{
         this.userNameInputBox = this.page.locator('input[type="email"]')
         this.userPasswordInputBox = this.page.locator('input[type="password"]')
         this.forgotPasswordLink = this.page.getByRole('link', {name: 'Forgot Password?'})
-        this.appLogo = this.page.getByAltText('logo')
+        this.appLogo = this.page.getByRole('img', {name: '/logo/i'})
     }
 
     async openLoginPage(){
         if(process.env.BASE_URL){
-            await this.page.goto(process.env.BASE_URL, {
+            await this.page.goto(process.env.BASE_URL + process.env.LOGIN__PAGE__URL, {
                 waitUntil:'networkidle'
             })
         } else {
@@ -45,6 +45,10 @@ export class LoginPageObject{
         await this.userNameInputBox.fill(username)
         await this.userPasswordInputBox.fill(userpassword)
         await this.userLoginButton.click()
+    }
+
+    async logoLocator(){
+        return this.appLogo
     }
 
 }

@@ -3,8 +3,8 @@ import { LoginPageObject } from '../pages/Auth/loginPage'
 import { ForgotPasswordPage } from '../pages/Auth/forgotPasswordPage'
 import { PageHeader} from '../pages/dashboards/PageHeader'
 import { SettingPage } from '../pages/dashboards/SettingsPage'
-import {ShipmentDeliveryStatsPage} from '../pages/dashboards/ShipmentDeliveryStatsPage'
-
+import { ShipmentDeliveryStatsPage } from '../pages/dashboards/ShipmentDeliveryStatsPage'
+import { SideBar } from '../pages/dashboards/SideBar'
 
 type ELAppFixtures = {
     LoginPageObject: LoginPageObject
@@ -12,6 +12,7 @@ type ELAppFixtures = {
     PageHeader: PageHeader
     SettingPage: SettingPage
     ShipmentDeliveryStatsPage: ShipmentDeliveryStatsPage
+    SideBar: SideBar
 }
 
 export const test = basetest.extend<ELAppFixtures>({
@@ -34,8 +35,11 @@ export const test = basetest.extend<ELAppFixtures>({
     
     ShipmentDeliveryStatsPage: async ({page}, use)=>{
         await use(new ShipmentDeliveryStatsPage(page))
-    }
+    },
 
+    SideBar: async ({page}, use)=>{
+        await use(new SideBar(page))
+    }
 })
 
 export { expect } from '@playwright/test'

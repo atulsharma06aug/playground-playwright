@@ -22,10 +22,8 @@ test.describe("Setting Testing", () => {
         await ShipmentDeliveryStatsPage.openSettingPageLink()
         if(await SettingPage.isChecboxIsChecked(UndeliveredandLostorders, 'Email')){
             await SettingPage.getToggleONOFF(UndeliveredandLostorders, 'Email')
-            console.log("I am here in if condition")
             await expect(SettingPage.expectResult(UndeliveredandLostorders, 'Email')).not.toBeChecked()
         } else {
-            console.log("I am here in else condition")
             await SettingPage.getToggleONOFF(UndeliveredandLostorders, 'Email')
             await expect(SettingPage.expectResult(UndeliveredandLostorders, 'Email')).toBeChecked()
         }
