@@ -2,13 +2,13 @@ import { Page, Locator } from '@playwright/test'
 
 export class SideBar {
 
-    private readonly linkDeliveryStatsPage: Locator
-    private readonly linkShipmentsPage: Locator
-    private readonly linkInvoicesPage: Locator
-    private readonly linkReportPage: Locator
-    private readonly linkTransactionpage: Locator
-    private readonly linkNotificationPage: Locator
-    private readonly linkSettingPage: Locator
+    public readonly linkDeliveryStatsPage: Locator
+    public readonly linkShipmentsPage: Locator
+    public readonly linkInvoicesPage: Locator
+    public readonly linkReportPage: Locator
+    public readonly linkTransactionpage: Locator
+    public readonly linkNotificationPage: Locator
+    public readonly linkSettingPage: Locator
 
     constructor(public readonly page: Page) {
         // a[href="/metric"]
@@ -25,10 +25,33 @@ export class SideBar {
         await this.linkDeliveryStatsPage.click()
     }
 
+    deliveryStatsLocator(){
+        return this.linkDeliveryStatsPage
+    }
+
     async clickOnShipmentPageLink(){
         await this.linkShipmentsPage.click()
     }
 
+    async clickOnInvoicePageLink(){
+        await this.linkInvoicesPage.click()
+    }
+
+    async clickOnReportPage(){
+        await this.linkReportPage.click()
+    }
+
+    async clickOnTrasactionPage(){
+        await this.linkTransactionpage.click()
+    }
+
+    async clickOnNotificationPage(){
+        await this.linkNotificationPage.click()
+    }
+
+    async clickOnSettingPage(){
+        await this.linkSettingPage.click()
+    }
 
 }
 

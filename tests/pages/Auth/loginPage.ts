@@ -18,7 +18,7 @@ export class LoginPageObject{
     async openLoginPage(){
         if(process.env.BASE_URL){
             await this.page.goto(process.env.BASE_URL + process.env.LOGIN__PAGE__URL, {
-                waitUntil:'networkidle'
+                waitUntil:'domcontentloaded'
             })
         } else {
             throw new Error("Unbale to load Login page URL from ENV file...")

@@ -12,7 +12,9 @@ test.describe("Login Page Test", () => {
         "invalidEmailIDFormat": process.env.INCORRECT__USER__USERNAME__WITH__INCORRECT__EMAIL__ID__FORMAT as string,
         "invalidEmailID": process.env.INCORRECT__USER__USERNAME__WITH__INCORRECT__EMAIL__ID as string,
         "validQAUserEmail": process.env.QA__USER__USERNAME as string,
-        "validQAUserPassword": process.env.QA__USER__PASSWORD as string
+        "validQAUserPassword": process.env.QA__USER__PASSWORD as string,
+        "simplePassword": "hithisistestpassword",
+        "complexPasswordButLenghtisShort": "Test@123"
     }
 
     test.beforeEach("Open Login Page", async ({LoginPageObject }) => {
@@ -39,6 +41,24 @@ test.describe("Login Page Test", () => {
         await expect(
             page.getByText("Please enter a valid email address.")
         ).toBeVisible()
+    })
+
+    test("Password Complication check ", async ({page, LoginPageObject})=>{
+        await LoginPageObject.enterEmailID(user__profile.validQAUserEmail)
+        await LoginPageObject.enterUserPassword(user__profile.simplePassword)
+        await LoginPageObject.pressSignIntoDashboardButton()
+        await expect(page.getByText("Password must be alphanumeric and at least 6 characters long.")).toBeVisible()
+        await LoginPageObject.enterUserPassword(user__profile.complexPasswordButLenghtisShort)
+        await expect(page.getByText("Password must be alphanumeric and at least 6 characters long.")).toBeVisible()
+    })
+
+    test("login failed test", async ({page, LoginPageObject})=>{
+        await LoginPageObject.doUserLogin(
+            user__profile.invalidEmailID, 
+            user__profile.validQAUserPassword
+        )
+        await expect(page.getByText("Either email or password is wrong")).toBeVisible()
+        //await expect(page.locator('.MuiAlert-root').first()).toContainText("Either email or password is wrong")
     })
 
     test.afterEach("Clearing All", async ({page, context})=>{
