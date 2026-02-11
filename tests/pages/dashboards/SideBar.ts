@@ -9,16 +9,20 @@ export class SideBar {
     public readonly linkTransactionpage: Locator
     public readonly linkNotificationPage: Locator
     public readonly linkSettingPage: Locator
+    public readonly linkWalletPage: Locator
+    public readonly linkForgeLinkPage: Locator
 
     constructor(public readonly page: Page) {
         // a[href="/metric"]
         this.linkDeliveryStatsPage = this.page.getByRole('link', {name: 'Delivery Stats'})
         this.linkShipmentsPage = this.page.getByRole('link', {name: 'Shipments'})
-        this.linkInvoicesPage = this.page.getByRole('link', {name: 'Invoices'})
         this.linkReportPage = this.page.getByRole('link', {name: 'Reports'})
+        this.linkInvoicesPage = this.page.getByRole('link', {name: 'Invoices'})
         this.linkNotificationPage = this.page.getByRole('link', {name: 'Notifications'})
         this.linkTransactionpage = this.page.getByRole('link', {name: 'Transactions'})
         this.linkSettingPage = this.page.getByRole('link', {name: 'Settings'})
+        this.linkWalletPage = this.page.getByRole('link', {name: 'Wallet'})
+        this.linkForgeLinkPage = this.page.getByRole('link', {name: 'Forge'})
     }
 
     async clickOnDeliveryStatePageLink(){
@@ -51,6 +55,14 @@ export class SideBar {
 
     async clickOnSettingPage(){
         await this.linkSettingPage.click()
+    }
+
+    async clickOnWalletPage(){
+        await this.linkWalletPage.click()
+    }
+
+    async clickOnForgeLinkPage(){
+        await this.linkForgeLinkPage.click()
     }
 
 }

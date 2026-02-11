@@ -41,6 +41,9 @@ test.describe("Sidebar Link test", () => {
         await SideBar.clickOnSettingPage()
         await expect(page.locator('a[href="/settings"]').getByRole('button')).toHaveClass(/Mui-selected/)
         await expect(page).toHaveURL(process.env.BASE_URL + "/settings")
+        await SideBar.clickOnWalletPage()
+        await expect(page.locator('a[href="/wallet"]').getByRole('button')).toHaveClass(/Mui-selected/)
+        await expect(page).toHaveURL(process.env.BASE_URL + "/wallet")
     })
 
 })
