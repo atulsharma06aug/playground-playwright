@@ -5,7 +5,7 @@ import { PageHeader} from '../pages/dashboards/PageHeader'
 import { SettingPage } from '../pages/dashboards/SettingsPage'
 import { ShipmentDeliveryStatsPage } from '../pages/dashboards/ShipmentDeliveryStatsPage'
 import { SideBar } from '../pages/dashboards/SideBar'
-
+import { ClientWalletPage } from '../pages/dashboards/ClientWalletPage'
 type ELAppFixtures = {
     LoginPageObject: LoginPageObject
     ForgotPasswordPage: ForgotPasswordPage
@@ -13,6 +13,7 @@ type ELAppFixtures = {
     SettingPage: SettingPage
     ShipmentDeliveryStatsPage: ShipmentDeliveryStatsPage
     SideBar: SideBar
+    ClientWalletPage: ClientWalletPage
 }
 
 export const test = basetest.extend<ELAppFixtures>({
@@ -39,6 +40,10 @@ export const test = basetest.extend<ELAppFixtures>({
 
     SideBar: async ({page}, use)=>{
         await use(new SideBar(page))
+    },
+
+    ClientWalletPage: async ({page}, use)=>{
+        await use(new ClientWalletPage(page))
     }
 })
 
